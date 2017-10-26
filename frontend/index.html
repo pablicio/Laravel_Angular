@@ -21,6 +21,7 @@
 
 <body ng-app="myApp">
     <div class="container" ng-controller="produtosController">
+
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <form ng-submit="storeProduto()">
@@ -59,8 +60,8 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="produto in produtos">
-                                <td>{{produto.nome}}</td>
-                                <td>{{produto.valor}}</td>
+                                <td>{{ produto.nome }}</td>
+                                <td>{{ produto.valor }}</td>
                                 <td>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#myModal" ng-click="showProduto(produto.id)">Editar</button>
                                     <button class="btn btn-danger" ng-click="destroyProduto(produto.id)">Deletar</button>

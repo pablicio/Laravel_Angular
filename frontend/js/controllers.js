@@ -4,11 +4,7 @@ app.controller('produtosController', function ($scope, $http) {
 
     $scope.fetchAllProdutos = function () {
         $http.get('http://localhost:8000/api/produtos').then(function (response) {
-
-
             $scope.produtos = response.data;
-
-
         });
     };
 
@@ -17,12 +13,13 @@ app.controller('produtosController', function ($scope, $http) {
     $scope.storeProduto = function () {
 
         var dataObj = {
-            name: $scope.nome,
-            email: $scope.valor,
+            nome: $scope.nome,
+            valor: $scope.valor,
         }
 
         $http.post('http://localhost:8000/api/produtos', dataObj).then(function (response) {
             if (response.data.message) {
+
                 $scope.storeProdutoResponse = response.data;
             } else {
                 $scope.nome = "";
@@ -45,7 +42,7 @@ app.controller('produtosController', function ($scope, $http) {
     $scope.updateProduto = function (id) {
         var dataObj = {
             nome: $scope.showNome,
-            email: $scope.showValor,
+            valor: $scope.showValor,
         }
 
         $http.put('http://localhost:8000/api/produtos/' + id, dataObj).then(function (response) {

@@ -15,7 +15,6 @@ class ProdutosController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        header("Access-Control-Allow-Origin: *");
         return response()->json($produtos);
     }
 
@@ -30,8 +29,8 @@ class ProdutosController extends Controller
     public function store(Request $request)
     {
         $produto = new Produto();
-        $produto->fill($request->all());
-        $produto->save();
+
+        $produto->create($request->all());
 
         return response($produto, 201);
     }
@@ -44,8 +43,6 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        header("Access-Control-Allow-Origin: *");
-
         $produto = Produto::find($id);
 
         if(!$produto){
@@ -66,16 +63,13 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        header("Access-Control-Allow-Origin: *");
-
         $produto = Produto::find($id);
 
         if(!$produto){
             return response(array('message' => 'Record not found.'), 404);
         }
 
-        $produto->fill($request->all());
-        $produto->save();
+        $produto->update($request->all());
 
         return response($produto, 200);
     }
