@@ -15,7 +15,8 @@ class ProdutosController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        return response($produtos, 200);
+        header("Access-Control-Allow-Origin: *");
+        return response()->json($produtos);
     }
 
 
@@ -43,6 +44,8 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
+        header("Access-Control-Allow-Origin: *");
+
         $produto = Produto::find($id);
 
         if(!$produto){
@@ -63,6 +66,8 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        header("Access-Control-Allow-Origin: *");
+
         $produto = Produto::find($id);
 
         if(!$produto){

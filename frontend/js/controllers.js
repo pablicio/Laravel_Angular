@@ -1,72 +1,70 @@
 var app = angular.module('myApp', []);
 
-app.controller('usersController', function($scope, $http){
+app.controller('produtosController', function ($scope, $http) {
 
-	$scope.fetchAllUsers = function(){
-		$http.get('http://localhost:8000/api/users').then(function(response){
-			$scope.users = response.data;
-		});
-	};
-
-	$scope.fetchAllUsers();
-
-	$scope.storeUser = function(){
-
-		var dataObj = {
-			name: $scope.name,
-			email: $scope.email,
-			telefone: $scope.telefone
-		}
-
-		$http.post('http://localhost:8000/api/users', dataObj).then(function(response){
-			if(response.data.message){
-				$scope.storeUserResponse = response.data;
-			} else {
-				$scope.name = "";
-				$scope.email = "";
-				$scope.telefone = "";
-				$scope.storeUserResponse = "";
-				$scope.fetchAllUsers();
-			}
-			
-		});
-	};
-
-	$scope.showUser = function(id){
-		$http.get('http://localhost:8000/api/users/' + id).then(function(response){
-			$scope.showName = response.data.name;
-			$scope.showEmail = response.data.email;
-			$scope.showTelefone = response.data.telefone;
-			$scope.showId = response.data.id;
-		});
-	};
-
-	$scope.updateUser = function(id){
-		var dataObj = {
-			name: $scope.showName,
-			email: $scope.showEmail,
-			telefone: $scope.showTelefone
-		}
-
-		$http.put('http://localhost:8000/api/users/' + id, dataObj).then(function(response){
-			if(response.data.message){
-				$scope.updateUserResponse = response.data;
-			} else {
-				$('#myModal').modal('hide');
-				$scope.fetchAllUsers();
-			}
-		});
-	};
-
-	$scope.destroyUser = function(id){
-		$http.delete('http://localhost:8000/api/users/' + id).then(function(response){
-			$scope.destroyUserResponse = response.data;
-			console.log(response.data);
-			$scope.fetchAllUsers();
-		});
-	};
+    $scope.fetchAllProdutos = function () {
+        $http.get('http://localhost:8000/api/produtos').then(function (response) {
 
 
+            $scope.produtos = response.data;
+
+
+        });
+    };
+
+    $scope.fetchAllProdutos();
+
+    $scope.storeProduto = function () {
+
+        var dataObj = {
+            name: $scope.nome,
+            email: $scope.valor,
+        }
+
+        $http.post('http://localhost:8000/api/produtos', dataObj).then(function (response) {
+            if (response.data.message) {
+                $scope.storeProdutoResponse = response.data;
+            } else {
+                $scope.nome = "";
+                $scope.valor = "";
+                $scope.storeProdutoResponse = "";
+                $scope.fetchAllProdutos();
+            }
+
+        });
+    };
+
+    $scope.showProduto = function (id) {
+        $http.get('http://localhost:8000/api/produtos/' + id).then(function (response) {
+            $scope.showNome = response.data.nome;
+            $scope.showValor = response.data.valor;
+            $scope.showId = response.data.id;
+        });
+    };
+
+    $scope.updateProduto = function (id) {
+        var dataObj = {
+            nome: $scope.showNome,
+            email: $scope.showValor,
+        }
+
+        $http.put('http://localhost:8000/api/produtos/' + id, dataObj).then(function (response) {
+            if (response.data.message) {
+                $scope.updateProdutoResponse = response.data;
+            } else {
+                $('#myModal').modal('hide');
+                $scope.fetchAllProdutos();
+            }
+        });
+    };
+
+    $scope.destroyProduto = function (id) {
+        $http.delete('http://localhost:8000/api/produtos/' + id).then(function (response) {
+            $scope.destroyProdutoResponse = response.data;
+            console.log(response.data);
+            $scope.fetchAllProdutos();
+        });
+    };
 
 
 });
