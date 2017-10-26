@@ -2,7 +2,7 @@
 
 # Instalação
 
-* git clone https://github.com/HermesMartins/crud-laravel-5.4-angularjs-1.6.3.git nomedoprojeto
+* git clone https://github.com/pabliciotjg/Laravel_Angular.git nomedoprojeto
 
 # Configurando o backend
 
